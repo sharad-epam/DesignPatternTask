@@ -18,17 +18,16 @@ function createNews(data) {
   newsId.insertAdjacentHTML("afterend", resultHtml);
 }
 
-//Factory Function
-export default function newsFeed(options) {
-  switch (options.type) {
-    case "get":
-      return fetch(options.proxy.url)
+//For Get method
+export default class getFactory {
+  constructor(props) {
+    if (props.type === "get") {
+      return fetch(props.proxy.url)
         .then(res => res.json())
         .then(data => createNews(data))
         .catch(err =>
           chainPromiseError(new Error("Error trying to fetch News Data!" + err))
         );
-    default:
-      return;
+    }
   }
 }

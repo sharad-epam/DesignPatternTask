@@ -1,4 +1,4 @@
-import newsFeed from "./api.js";
+import { api } from "./DataFactory";
 const API_KEY = `720c0314e8b2423eb7e1ffca5a1eeeb1`;
 const channel = "bbc-news";
 
@@ -20,5 +20,5 @@ newsBtn.addEventListener("click", () => {
   script.src = "/src/custom-comp.js";
   head.appendChild(script);
 
-  newsFeed({ proxy, type: "get" });
+  api({ proxy, type: "get" });
 });
