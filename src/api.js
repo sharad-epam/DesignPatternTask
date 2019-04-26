@@ -26,7 +26,7 @@ export default class getFactory {
         .then(res => res.json())
         .then(data => createNews(data))
         .catch(err =>
-          chainPromiseError(new Error("Error trying to fetch News Data!" + err))
+          chainPromiseError.error("Error trying to fetch News Data!")
         );
     }
   }
