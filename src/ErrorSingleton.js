@@ -1,7 +1,15 @@
 class ErrorSingleton {
-  instance = err => {
-    return err !== null ? (err = new ErrorSingleton(err)) : error;
-  };
+  static instance;
+    static getinstance(){
+        if(!ErrorSingleton.instance){
+            ErrorSingleton.instance = new ErrorSingleton()
+            return ErrorSingleton.instance;
+        }
+        return ErrorSingleton.instance;
+    }
+    error(error) {
+            alert(error)
+    }
 }
-export const chainPromiseError = err => () =>
-  Promise.reject(ErrorSingleton.instance(err));
+
+const chainPromiseError = ErrorSingleton.getinstance();
