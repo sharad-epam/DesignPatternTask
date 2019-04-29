@@ -11,4 +11,4 @@ class ErrorSingleton {
     alert(error);
   }
 }
-const chainPromiseError = ErrorSingleton.getinstance();
+export const chainPromiseError = ErrorSingleton.getinstance();

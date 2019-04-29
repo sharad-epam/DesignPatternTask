@@ -1,4 +1,4 @@
-import { chainPromiseError } from "./ErrorSingleton";
+//import { chainPromiseError } from "./ErrorSingleton";
 import "./styles/main.scss";
 let resultHtml = "";
 const getResults = (
@@ -18,16 +18,47 @@ function createNews(data) {
   newsId.insertAdjacentHTML("afterend", resultHtml);
 }
 
-//For Get method
-export default class getFactory {
+export class getFactory {
   constructor(props) {
     if (props.type === "get") {
       return fetch(props.proxy.url)
         .then(res => res.json())
         .then(data => createNews(data))
-        .catch(err =>
-          chainPromiseError.error("Error trying to fetch News Data!")
+        .catch(error =>
+          import("./ErrorSingleton").then(module =>
+            module.chainPromiseError.error(
+              "Error trying to fetch News Data!" + error.message
+            )
+          )
         );
     }
   }
 }
+
+export class postFactory {
+  constructor(props) {
+    if (props.type === "post") {
+    }
+  }
+}
+
+export class updateFactory {
+  constructor(props) {
+    if (props.type === "put") {
+    }
+  }
+}
+
+export class deleteFactory {
+  constructor(props) {
+    if (props.type === "delete") {
+    }
+  }
+}
+
+export default {
+  getFactory,
+  postFactory,
+  updateFactory,
+  deleteFactory
+};
