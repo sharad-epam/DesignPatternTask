@@ -1,9 +1,11 @@
 import { api } from "./DataFactory";
-const API_KEY = `720c0314e8b2423eb7e1ffca5a1eeeb1`;
+import { getResults } from "./view";
+const API_KEY = `e6dd7b8d8c95452d928c02be508072cd`;
 const channel = "bbc-news";
 
 let handler = {
   get(target, key) {
+    console.log(target.url);
     return key ? target[key] : "";
   }
 };

@@ -1,28 +1,10 @@
 import "./styles/main.scss";
-let resultHtml = "";
-const getResults = (
-  { author, title, description, publishedAt, urlToImage },
-  index
-) => {
-  const item = index === 0 ? `${author}` : "";
-  resultHtml += `<div><result-info author="${item}" title="${title}" desc="${description}" publish="${publishedAt}" img="${urlToImage}"></result-info></div>`;
-};
+import { createNews } from "./view";
 
-const createNews = data => {
-  let newsId = document.getElementById("news");
-  data.articles.length > 0
-    ? (document.getElementById("newsBtn").style.display = "none")
-    : "";
-  data.articles.map((item, index) => getResults(item, index));
-  newsId.insertAdjacentHTML("afterend", resultHtml);
-};
 const requestWrapper = ({ url, type, body }) => {
   let config = {
     method: type,
-    url,
-    headers: {
-      "Content-Type": "application/json"
-    }
+    url
   };
   if (body) {
     body = JSON.stringify(body);
@@ -35,7 +17,7 @@ const requestWrapper = ({ url, type, body }) => {
       ...config
     };
   }
-  return fetch(url)
+  return fetch(url, config)
     .then(response => response.json())
     .then(data => {
       return data;
@@ -48,30 +30,15 @@ const requestWrapper = ({ url, type, body }) => {
       )
     );
 };
-export class getFactory {
-  constructor(props) {
-    let config = {
-      url: props.proxy.url,
-      type: "GET"
-    };
-    requestWrapper(config).then(data => createNews(data));
-  }
-}
+export const getFactory = props =>
+  requestWrapper({ url: props.proxy.url, type: "GET" }).then(data =>
+    createNews(data)
+  );
 
-export class postFactory {
-  constructor(props) {}
-}
+export const postFactory = props => requestWrapper({ url, type: "POST", body });
 
-export class updateFactory {
-  constructor(props) {}
-}
+export const updateFactory = props =>
+  requestWrapper({ url, type: "PUT", body });
 
-export class deleteFactory {
-  constructor(props) {}
-}
-export default {
-  getFactory,
-  postFactory,
-  updateFactory,
-  deleteFactory
-};
+export const deleteFactory = props =>
+  requestWrapper({ url, type: "DELETE", body });

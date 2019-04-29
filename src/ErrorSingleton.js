@@ -8,7 +8,7 @@ class ErrorSingleton {
     return ErrorSingleton.instance;
   }
   error(error) {
-    alert(error);
+    console.error(error);
   }
 }
 export const chainPromiseError = ErrorSingleton.getinstance();
