@@ -18,7 +18,7 @@ const requestWrapper = ({ url, type, body }) => {
     };
   }
   return fetch(url, config)
-    .then(res => (res.status === 200) ? res.json() : ()=>{throw new Error("error")})
+    .then(res => (res.status === 200) ? res.json() : ()=>{throw new Error("Bad Request!")})
     .then(data => {
       return data;
     })
