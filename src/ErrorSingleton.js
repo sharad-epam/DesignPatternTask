@@ -1,15 +1,14 @@
 class ErrorSingleton {
   static instance;
-    static getinstance(){
-        if(!ErrorSingleton.instance){
-            ErrorSingleton.instance = new ErrorSingleton()
-            return ErrorSingleton.instance;
-        }
-        return ErrorSingleton.instance;
+  static getinstance() {
+    if (!ErrorSingleton.instance) {
+      ErrorSingleton.instance = new ErrorSingleton();
+      return ErrorSingleton.instance;
     }
-    error(error) {
-            alert(error)
-    }
+    return ErrorSingleton.instance;
+  }
+  error(error) {
+    console.error(error);
+  }
 }
-
-const chainPromiseError = ErrorSingleton.getinstance();
+export const chainPromiseError = ErrorSingleton.getinstance();
