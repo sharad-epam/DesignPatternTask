@@ -2,16 +2,16 @@ import { getFactory, postFactory, updateFactory, deleteFactory } from "./api";
 const dataFactory = props => {
   switch (props.type) {
     case "get":
-      return new getFactory(props);
+      return getFactory(props);
     case "post":
-      return new postFactory(props);
+      return postFactory(props);
     case "put":
-      return new updateFactory(props);
+      return updateFactory(props);
     case "delete":
-      return new deleteFactory(props);
+      return deleteFactory(props);
     default:
       return Promise.resolve();
   }
 };
 
-export const api = props => new dataFactory(props);
+export const api = props => dataFactory(props);
