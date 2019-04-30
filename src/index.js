@@ -1,5 +1,4 @@
 import { api } from "./DataFactory";
-import { getResults } from "./view";
 const API_KEY = `e6dd7b8d8c95452d928c02be508072cd`;
 const channel = "bbc-news";
 

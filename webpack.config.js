@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   entry: ["babel-polyfill", "./src/index.js"],
   devServer: {
-    host: "192.168.1.9", //your ip address
+    host: "10.71.163.249", //your ip address
     port: 8081
   },
 

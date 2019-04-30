@@ -35,10 +35,11 @@ export const getFactory = props =>
     createNews(data)
   );
 
-export const postFactory = props => requestWrapper({ url, type: "POST", body });
+export const postFactory = props =>
+  requestWrapper({ url: props.proxy.url, type: "POST", body });
 
 export const updateFactory = props =>
-  requestWrapper({ url, type: "PUT", body });
+  requestWrapper({ url: props.proxy.url, type: "PUT", body });
 
 export const deleteFactory = props =>
-  requestWrapper({ url, type: "DELETE", body });
+  requestWrapper({ url: props.proxy.url, type: "DELETE", body });
